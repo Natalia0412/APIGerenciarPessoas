@@ -21,4 +21,7 @@ public class EnderecoService {
         Optional<Endereco> opt=enderecoRepository.findById(id);
         return opt.get();
     }
+    public Endereco insertEndereco(Endereco obj){
+       return enderecoRepository.save(obj);
+    }
 }

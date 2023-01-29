@@ -19,4 +19,10 @@ public class PessoaService {
         Optional <Pessoa> obj=pessoaRepository.findById(id);
         return obj.get();
     }
+    public Pessoa insertPessoa(Pessoa obj){
+        return pessoaRepository.save(obj);
+    }
+    public void deletePessoa(Long id){
+        pessoaRepository.deleteById(id);
+    }
 }

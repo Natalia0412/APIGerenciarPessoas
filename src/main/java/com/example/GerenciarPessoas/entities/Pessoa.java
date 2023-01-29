@@ -17,7 +17,7 @@ import java.util.List;
 public class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nome;
@@ -25,7 +25,7 @@ public class Pessoa {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa",cascade = {CascadeType.ALL})
     private List<Endereco> enderecoList ;
 
 
