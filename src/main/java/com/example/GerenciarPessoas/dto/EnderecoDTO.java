@@ -24,6 +24,7 @@ public class EnderecoDTO {
     private String numero;
 
     private String cidade;
+    private Integer enderecoEnum;
 
 
 

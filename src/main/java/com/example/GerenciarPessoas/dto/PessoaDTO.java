@@ -18,11 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 public class PessoaDTO {
     private String nome;
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
-
-
     private List<EnderecoDTO> enderecoList ;
+
 
 }
