@@ -13,7 +13,7 @@ import com.example.GerenciarPessoas.entities.Endereco;
 import com.example.GerenciarPessoas.entities.Pessoa;
 import com.example.GerenciarPessoas.repositories.EnderecoRepository;
 import com.example.GerenciarPessoas.repositories.PessoaRepository;
-
+/*
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
@@ -41,3 +41,4 @@ public class TestConfig implements CommandLineRunner {
     }
 }
 // p.addEndereco("Rua eduardo","02217-000","222A","São Paulo")
+*/

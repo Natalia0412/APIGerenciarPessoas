@@ -1,5 +1,6 @@
 package com.example.GerenciarPessoas.resources;
 
+import com.example.GerenciarPessoas.dto.PessoaDTO;
 import com.example.GerenciarPessoas.entities.Endereco;
 import com.example.GerenciarPessoas.entities.Pessoa;
 import com.example.GerenciarPessoas.services.PessoaService;
@@ -26,12 +27,21 @@ public class PessoaResource {
         Pessoa obj=pessoaService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-    @PostMapping()
+    @PostMapping
+    public  PessoaDTO  insert(@RequestBody PessoaDTO pdto){
+        return pessoaService.insertPessoa(pdto);
+    }
+   /* @PostMapping()
     public ResponseEntity<Pessoa>insertPessoa(@RequestBody  Pessoa obj){
         obj=pessoaService.insertPessoa(obj);
         URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Pessoa>updatePessoa(@PathVariable Long id,@RequestBody  Pessoa obj){
+        obj= pessoaService.update(id,obj);
+        return ResponseEntity.ok().body(obj);
+    }*/
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void>deletePessoa(@PathVariable Long id){
         pessoaService.deletePessoa(id);
