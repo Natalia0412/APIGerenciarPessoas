@@ -1,15 +1,12 @@
 package com.example.GerenciarPessoas.resources;
 
 import com.example.GerenciarPessoas.dto.PessoaDTO;
-import com.example.GerenciarPessoas.entities.Endereco;
-import com.example.GerenciarPessoas.entities.Pessoa;
 import com.example.GerenciarPessoas.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,24 +14,21 @@ import java.util.List;
 public class PessoaResource {
     @Autowired
     private PessoaService pessoaService;
+
     @GetMapping
     public ResponseEntity<List<PessoaDTO>>findAll(){
         List<PessoaDTO> listPessoaDTO=pessoaService.findAll();
         return ResponseEntity.ok().body( listPessoaDTO);
     }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<PessoaDTO>findById(@PathVariable Long id){
         PessoaDTO obj=pessoaService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-/*
-    @GetMapping(value = "/lista/{id}")
-    public ResponseEntity<List<PessoaDTO>>listaPessoaEndereco(@PathVariable Long id){
-    PessoaDTO pessoaDTO= pessoaService.findById(id);
-    List<PessoaDTO> pessoaDTOList=
 
-    }
-*/
+
+
     @PostMapping
     public  PessoaDTO  insert(@RequestBody PessoaDTO pdto){
         return pessoaService.insertPessoa(pdto);

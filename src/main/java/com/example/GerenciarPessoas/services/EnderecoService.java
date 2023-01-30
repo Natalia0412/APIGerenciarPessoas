@@ -17,8 +17,11 @@ import java.util.Optional;
 public class EnderecoService {
 
     private final EnderecoRepository enderecoRepository;
+
     private final PessoaService pessoaService;
+
     private final PessoaRepository pessoaRepository;
+
     public List<EnderecoDTO> findAll() {
         return EnderecoConvert.enderecoToEnderecoDTO(enderecoRepository.findAll());
     }
@@ -50,7 +53,7 @@ public class EnderecoService {
         if(existeId && pessoaId.isPresent()){
             Endereco endereco=EnderecoConvert.enderecoDTOToEndereco(obj);
             endereco.setId(id);
-           // endereco.setPessoa(endereco.getPessoa().getId());
+            // endereco.setPessoa(endereco.getPessoa().getId());
             endereco.setPessoa(pessoaId.get());
             return EnderecoConvert.enderecoToEnderecoDTO(enderecoRepository.save(endereco));
         }else{
