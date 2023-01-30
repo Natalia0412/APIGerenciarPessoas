@@ -19,13 +19,18 @@ public class EnderecoService {
     private final EnderecoRepository enderecoRepository;
     private final PessoaService pessoaService;
     private final PessoaRepository pessoaRepository;
-    public List<Endereco> findAll() {
-        return enderecoRepository.findAll();
+    public List<EnderecoDTO> findAll() {
+        return EnderecoConvert.enderecoToEnderecoDTO(enderecoRepository.findAll());
     }
 
-    public Endereco findById(Long id) {
+    public EnderecoDTO findById(Long id) {
         Optional<Endereco> opt=enderecoRepository.findById(id);
-        return opt.get();
+        if(!opt.isPresent()){
+            throw new RuntimeException("Endereco não foi encontrado!");
+        }else {
+            return EnderecoConvert.enderecoToEnderecoDTO(opt.get());
+        }
+
     }
 
     public EnderecoDTO insertEndereco(EnderecoDTO obj){

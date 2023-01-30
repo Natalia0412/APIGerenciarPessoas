@@ -27,6 +27,14 @@ public class PessoaResource {
         PessoaDTO obj=pessoaService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+/*
+    @GetMapping(value = "/lista/{id}")
+    public ResponseEntity<List<PessoaDTO>>listaPessoaEndereco(@PathVariable Long id){
+    PessoaDTO pessoaDTO= pessoaService.findById(id);
+    List<PessoaDTO> pessoaDTOList=
+
+    }
+*/
     @PostMapping
     public  PessoaDTO  insert(@RequestBody PessoaDTO pdto){
         return pessoaService.insertPessoa(pdto);

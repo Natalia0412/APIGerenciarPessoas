@@ -15,13 +15,13 @@ public class EnderecoResource {
     @Autowired
     private EnderecoService enderecoService;
     @GetMapping
-    public ResponseEntity<List<Endereco>> findAll(){
-        List<Endereco> list=enderecoService.findAll();
+    public ResponseEntity<List<EnderecoDTO>> findAll(){
+        List<EnderecoDTO> list=enderecoService.findAll();
         return ResponseEntity.ok().body(list);
     }
     @GetMapping(value="/{id}")
-    public ResponseEntity<Endereco>findById(@PathVariable Long id){
-        Endereco obj =enderecoService.findById(id);
+    public ResponseEntity<EnderecoDTO>findById(@PathVariable Long id){
+        EnderecoDTO obj =enderecoService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
     @PostMapping
