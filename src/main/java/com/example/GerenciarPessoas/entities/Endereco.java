@@ -32,7 +32,8 @@ public class Endereco {
     private String numero;
 
     private String cidade;
-    private Integer enderecoEnum;
+    @Enumerated(EnumType.STRING)
+    private EnderecoEnum enderecoEnum;
     @JsonIgnore
     //@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.DETACH,CascadeType.REFRESH})
     @ManyToOne(fetch = FetchType.LAZY)

@@ -26,7 +26,7 @@ public class Pessoa {
     private LocalDate dataNascimento;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "pessoa",cascade = {CascadeType.ALL})
-    private List<Endereco> enderecoList ;
+    private List<Endereco> enderecos ;
 
 
 }

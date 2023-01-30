@@ -1,10 +1,7 @@
 package com.example.GerenciarPessoas.services;
 
-import com.example.GerenciarPessoas.dto.EnderecoDTO;
 import com.example.GerenciarPessoas.dto.PessoaDTO;
-import com.example.GerenciarPessoas.entities.Endereco;
 import com.example.GerenciarPessoas.entities.Pessoa;
-import com.example.GerenciarPessoas.maps.EnderecoConvert;
 import com.example.GerenciarPessoas.maps.PessoaConvert;
 import com.example.GerenciarPessoas.repositories.EnderecoRepository;
 import com.example.GerenciarPessoas.repositories.PessoaRepository;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PessoaService {
@@ -22,39 +18,44 @@ public class PessoaService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
-    public List<Pessoa> findAll(){
-       return  pessoaRepository.findAll();
+    public List<PessoaDTO> findAll(){
+        return PessoaConvert.pessoaToPessoaDTO(pessoaRepository.findAll());
+        //return  pessoaRepository.findAll();
     }
-    public Pessoa findById(Long id){
-        Optional <Pessoa> obj=pessoaRepository.findById(id);
-        return obj.get();
+
+    public PessoaDTO findById(Long id){
+
+        Optional<Pessoa> pessoaOptional=pessoaRepository.findById(id);
+        if(!pessoaOptional.isPresent()){
+            throw new RuntimeException("Pessoa não foi encontrada!");
+        }
+
+        return PessoaConvert.pessoaToPessoaDTO(pessoaOptional.get());
+
     }
 
 
     public PessoaDTO insertPessoa(PessoaDTO obj){
-        Pessoa pessoaSaved = pessoaRepository.save(PessoaConvert.pessoaDTOToPessoa(obj,false));
-        List<Endereco>  enderecoList=enderecoRepository.saveAll(EnderecoConvert.enderecoDTOToEndereco(obj.getEnderecoList(),pessoaSaved));
-        PessoaDTO p = PessoaConvert.pessoaToPessoaDTO(pessoaSaved, false);
-        List<EnderecoDTO> end = EnderecoConvert.enderecoToEnderecoDTO(enderecoList);
-        p.setEnderecoList(end);
+        Pessoa pessoaSaved = pessoaRepository.save(PessoaConvert.pessoaDTOToPessoa(obj));
+        //List<Endereco>  enderecoList=enderecoRepository.saveAll(EnderecoConvert.enderecoDTOToEndereco(obj.getEnderecos(),pessoaSaved));
+        PessoaDTO p = PessoaConvert.pessoaToPessoaDTO(pessoaSaved);
+        // List<EnderecoDTO> end = EnderecoConvert.enderecoToEnderecoDTO(enderecoList);
+        //p.setEnderecos(end);
         return p;
     }
-/*
-    public Pessoa update(Long id, Pessoa obj){
-        return pessoaRepository.findById(id).map(p->{
-            p.setNome(obj.getNome());
-            p.setDataNascimento(obj.getDataNascimento());
-            p.setEnderecoList(obj.getEnderecoList());
-            return pessoaRepository.save(p);
-        })
+
+    public PessoaDTO update(Long id, PessoaDTO obj){
+        boolean existsById = pessoaRepository.existsById(id);
+        if(existsById){
+            Pessoa pessoa = PessoaConvert.pessoaDTOToPessoa(obj);
+            pessoa.setId(id);
+            return PessoaConvert.pessoaToPessoaDTO(pessoaRepository.save(pessoa));
+        }else{
+            throw  new RuntimeException("Pessoa não encontrada");
+        }
     }
 
-    private void updateData(Pessoa entity, Pessoa obj) {
-        entity.setNome(obj.getNome());
-        entity.setDataNascimento((obj.getDataNascimento()));
-        entity.setEnderecoList(obj.setEnderecoList(););
-    }
-*/
+
     public void deletePessoa(Long id){
         pessoaRepository.deleteById(id);
     }

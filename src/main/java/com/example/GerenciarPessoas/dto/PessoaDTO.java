@@ -17,10 +17,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PessoaDTO {
+    private Long id;
     private String nome;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
-    private List<EnderecoDTO> enderecoList ;
+    //private List<EnderecoDTO> enderecos ;
 
 
 }

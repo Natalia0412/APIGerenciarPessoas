@@ -1,5 +1,6 @@
 package com.example.GerenciarPessoas.resources;
 
+import com.example.GerenciarPessoas.dto.EnderecoDTO;
 import com.example.GerenciarPessoas.entities.Endereco;
 import com.example.GerenciarPessoas.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,20 @@ public class EnderecoResource {
         return ResponseEntity.ok().body(obj);
     }
     @PostMapping
-    public  ResponseEntity<Endereco>insertEndereco(@RequestBody Endereco obj){
-        obj=enderecoService.insertEndereco(obj);
-        return ResponseEntity.ok().body(obj);
-
+    public  ResponseEntity<EnderecoDTO>insertEndereco(@RequestBody EnderecoDTO obj){
+        EnderecoDTO end=enderecoService.insertEndereco(obj);
+        return  ResponseEntity.ok().body(end);
     }
-
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<EnderecoDTO>updateEndereco(@PathVariable Long id, @RequestBody EnderecoDTO obj){
+        EnderecoDTO enderecoDTO=enderecoService.update(id,obj);
+        return ResponseEntity.ok().body(enderecoDTO);
+    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteEndereco(@PathVariable Long id){
+        enderecoService.deleteEndereco(id);
+        return ResponseEntity.noContent().build();
+    }
 }
+
+
