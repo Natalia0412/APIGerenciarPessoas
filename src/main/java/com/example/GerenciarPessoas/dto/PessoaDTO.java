@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Data
 
 @NoArgsConstructor
@@ -17,6 +19,8 @@ public class PessoaDTO {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
+
+    private List<EnderecoDTO> enderecos;
 
 
 

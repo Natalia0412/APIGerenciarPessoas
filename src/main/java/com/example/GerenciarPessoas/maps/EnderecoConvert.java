@@ -31,7 +31,6 @@ public class EnderecoConvert {
         endereco2.setCep(enderecoDTO.getCep());
         endereco2.setLogradouro(enderecoDTO.getLogradouro());
         endereco2.setEnderecoEnum(enderecoDTO.getEnderecoEnum());
-
         return endereco2;
     }
 

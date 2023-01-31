@@ -4,6 +4,7 @@ import com.example.GerenciarPessoas.dto.EnderecoDTO;
 import com.example.GerenciarPessoas.dto.PessoaDTO;
 import com.example.GerenciarPessoas.entities.Endereco;
 import com.example.GerenciarPessoas.entities.Pessoa;
+import com.example.GerenciarPessoas.maps.EnderecoConvert;
 import com.example.GerenciarPessoas.maps.PessoaConvert;
 import com.example.GerenciarPessoas.repositories.EnderecoRepository;
 import com.example.GerenciarPessoas.repositories.PessoaRepository;
@@ -34,6 +35,7 @@ public class PessoaService {
     }
 
 
+
     public PessoaDTO insertPessoa(PessoaDTO obj){
         Pessoa pessoaSaved = pessoaRepository.save(PessoaConvert.pessoaDTOToPessoa(obj));
         PessoaDTO p = PessoaConvert.pessoaToPessoaDTO(pessoaSaved);
@@ -56,4 +58,10 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
+    public PessoaDTO ListPessoaEndereco(Long id) {
+        PessoaDTO pessoaDTO=this.findById(id);
+        List<EnderecoDTO> enderecoDTOList = EnderecoConvert.enderecoToEnderecoDTO(enderecoRepository.findAllEnderecosByPessoaId(id));
+        pessoaDTO.setEnderecos(enderecoDTOList);
+        return pessoaDTO;
+    }
 }
