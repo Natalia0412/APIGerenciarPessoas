@@ -1,6 +1,6 @@
 # APIGerenciarPessoas
 ## Do que se trata:
-- API com CRUD de Pessoas e Endereço com um adendo de listar Pessoa com seus respectivos endereços.
+API com CRUD de Pessoas e Endereço com um adendo de listar Pessoa com seus respectivos endereços.
 ##Como utlizar:
 - Utilizar algum software de API Client, para testar esse projeto utilizei Postman, então fica como recomendação.
 - Estartar a aplicação em alguma ide que aceite Java.
