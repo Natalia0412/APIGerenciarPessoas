@@ -2,10 +2,13 @@ package com.example.GerenciarPessoas.resources;
 
 import com.example.GerenciarPessoas.dto.PessoaDTO;
 import com.example.GerenciarPessoas.services.PessoaService;
+import org.apache.catalina.valves.rewrite.Substitution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +38,10 @@ public class PessoaResource {
     }
 
     @PostMapping
-    public  PessoaDTO  insert(@RequestBody PessoaDTO pdto){
-        return pessoaService.insertPessoa(pdto);
+    public  ResponseEntity<PessoaDTO>  insert(@RequestBody PessoaDTO pdto){
+        PessoaDTO pessoaDTO= pessoaService.insertPessoa(pdto);
+        URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoaDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(pessoaDTO);
     }
 
     @PutMapping(value = "/{id}")

@@ -5,7 +5,9 @@ import com.example.GerenciarPessoas.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,8 @@ public class EnderecoResource {
     @PostMapping
     public  ResponseEntity<EnderecoDTO>insertEndereco(@RequestBody EnderecoDTO obj){
         EnderecoDTO end=enderecoService.insertEndereco(obj);
-        return  ResponseEntity.ok().body(end);
+        URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(end.getId()).toUri();
+        return  ResponseEntity.created(uri).body(end);
     }
 
     @PutMapping(value = "/{id}")
