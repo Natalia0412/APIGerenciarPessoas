@@ -1,7 +1,9 @@
 # APIGerenciarPessoas
 ## Do que se trata:
-API com CRUD de Pessoas e Endereço com um adendo de listar Pessoa com seus respectivos endereços.
-## Como utlizar:
+API com CRUD de Pessoas e Endereços com um adendo de listar Pessoa com seus respectivos endereços.
+## Tecnologias utilizadas: ![Java](https://img.shields.io/badge/-Java-333333?style=flat&logo=Java&logoColor=007396) ![SpringBoot](https://img.shields.io/badge/-Spring%20Boot-333333?style=flat&logo=spring-boot) ![H2](https://img.shields.io/badge/-H2-333333?style=flat&logo=H2&logoColor=007396) ![Lambda](https://img.shields.io/badge/-Lambda-333333?style=flat&logo=Lambda&logoColor=007396) ![JPA](https://img.shields.io/badge/-JPA-333333?style=flat&logo=Lambda&logoColor=007396)
+
+## Como utilizar:
 - Utilizar algum software de API Client, para testar esse projeto utilizei Postman, então fica como recomendação.
 - Estartar a aplicação em alguma ide que aceite Java.
 ### Criar Pessoa:
@@ -10,9 +12,9 @@ API com CRUD de Pessoas e Endereço com um adendo de listar Pessoa com seus resp
 - Selecionar Body 
 - Selecionar raw e escolher tipo JSON
 - Colocar como body o seguinte Json:
-{ "nome":"nomeDaPessoaAqui","dataNascimento":"dataNascimentoDaPessoaAqui" }, exemplo visual abaixo:
-![Post Pessoa](imgReadme/postPessoa.png)
-- Clicar em Send
+{ "nome":"nomeDaPessoaAqui","dataNascimento":"dataNascimentoDaPessoaAqui" }
+- Clicar em Send,exemplo visual abaixo:
+  ![Post Pessoa](imgReadme/postPessoa.png)
 - Saída:
   ![Post Pessoa](imgReadme/ResponsePostPessoa.png)
 - Como pode notar o status é 201 ou seja foi criado e a aplicação gerou um id para o Json inserido.
@@ -43,7 +45,7 @@ API com CRUD de Pessoas e Endereço com um adendo de listar Pessoa com seus resp
 - Saída:
   ![GET Lista Pessoa Endereco](imgReadme/ResponseListaPessoaEndereco.png)
 ### Listar Pessoas
-- Escolher como tipo de requisição como GET
+- Escolher como tipo de requisição o GET
 - Incluir URI: http://localhost:8080/pessoas
 - Clicar em Send
   ![GET Lista Pessoa ](imgReadme/getPessoas.png)
